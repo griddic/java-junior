@@ -1,12 +1,16 @@
 package com.acme.edu;
 
 public class Logger {
-    public static void log(int message) {
+    public static void logAnyPrimitiveType(Object message) {
         System.out.println("primitive: " + message);
     }
 
+    public static void log(int message) {
+        logAnyPrimitiveType(message);
+    }
+
     public static void log(byte message) {
-        System.out.println("primitive: " + message);
+        logAnyPrimitiveType(message);
     }
 
     public static void log(char message) {
@@ -18,7 +22,7 @@ public class Logger {
     }
 
     public static void log(boolean message) {
-        System.out.println("primitive: " + message);
+        logAnyPrimitiveType(message);
     }
     public static void log(Object message) {
         System.out.println("reference: " + message);
