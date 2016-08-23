@@ -20,4 +20,7 @@ public class Logger {
     public static void log(boolean message) {
         System.out.println("primitive: " + message);
     }
+    public static void log(Object message) {
+        System.out.println("reference: " + message);
+    }
 }
