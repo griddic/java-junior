@@ -86,22 +86,25 @@ public class Logger {
         byte_counter = 0;
         byte_MAX_counter = 0;
     }
+
+    public static void log(int[] array) {
+        logLnRawString(formatter.array_(array));
 }
 
-class Formatter {
-    public static String char_ (char ch) {
+static class Formatter {
+    public String char_ (char ch) {
         return String.format("char: %s", ch);
     }
-    public static String string_(String str) {
+    public String string_(String str) {
         return String.format("string: %s", str);
     }
-    public static String object_(Object obj) {
+    public String object_(Object obj) {
         return String.format("reference: %s", obj);
     }
-    public static String anyPrimitiveType(Object obj) {
+    public String anyPrimitiveType(Object obj) {
         return String.format("primitive: %s", obj);
     }
-    public static String none(Object obj) {
+    public String none(Object obj) {
         return String.format("%s", obj);
     }
 
@@ -110,6 +113,17 @@ class Formatter {
             return string_(last_string);
         } else {
             return String.format("%s (x%d)", last_string, last_string_counter);
+        }
+    }
+
+    public String array_(int[] array) {
+        String result = ""; //= "{-1, 0, 1}";
+        //System.out.println(array.length - 1);
+        for (int i = 0; i < (array.length - 1); i++) {
+            result = result + String.format("%d, ", array[i]);
+        }
+        result = result + String.format("%d", array[array.length - 1]);
+        return String.format("primitives array: {%s}", result);
         }
     }
 }
