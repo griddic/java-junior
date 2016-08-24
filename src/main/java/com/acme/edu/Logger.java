@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Logger {
     static STD handler = new STD();
     static Formatter formatter = new Formatter();
+    static int counter = 0;
 
     public static void logRawString(String message) {
         handler.write(message);
@@ -15,8 +16,9 @@ public class Logger {
         logRawString(message + System.lineSeparator());
     }
 
-    public static void log(int message) {
-        logLnRawString(formatter.anyPrimitiveType(message));
+    public static void log(int number) {
+        counter += number;
+        //logLnRawString(formatter.anyPrimitiveType(message));
     }
 
     public static void log(byte message) {
@@ -36,6 +38,11 @@ public class Logger {
     }
     public static void log(Object message) {
         logLnRawString(formatter.object_(message));
+    }
+
+    public static void sequenceEnd() {
+        logLnRawString(formatter.anyPrimitiveType(counter));
+        counter = 0;
     }
 }
 
