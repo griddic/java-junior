@@ -3,8 +3,11 @@ package com.acme.edu;
 public class Logger {
     static STD handler = new STD();
     static Formatter formatter = new Formatter();
-    static int int_counter = 0;
+    static long int_counter = 0;
     static int int_MAX_counter = 0;
+
+    static int byte_counter = 0;
+    static int byte_MAX_counter = 0;
 
     public static void logRawString(String message) {
         handler.write(message);
@@ -16,16 +19,21 @@ public class Logger {
     }
 
     public static void log(int number) {
-        if (number == Integer.MAX_VALUE) {
-            int_MAX_counter += 1;
-        } else {
-            int_counter += number;
-        }
+        int a;
+        int_counter += number;
+        a = (int) (int_counter/Integer.MAX_VALUE);
+        int_MAX_counter += a;
+        int_counter = int_counter - (Integer.MAX_VALUE * a);
         //logLnRawString(formatter.anyPrimitiveType(message));
     }
 
-    public static void log(byte message) {
-        logLnRawString(formatter.anyPrimitiveType(message));
+    public static void log(byte number) {
+        int a;
+        byte_counter += number;
+        a = (int) (byte_counter/Byte.MAX_VALUE);
+        byte_MAX_counter += a;
+        byte_counter = byte_counter - (Byte.MAX_VALUE * a);
+        //logLnRawString(formatter.anyPrimitiveType(message));
     }
 
     public static void log(char message) {
@@ -43,13 +51,22 @@ public class Logger {
         logLnRawString(formatter.object_(message));
     }
 
-    public static void sequenceEnd() {
+    public static void intSequenceEnd() {
         logLnRawString(formatter.anyPrimitiveType(int_counter));
         for (int i = 0; i < int_MAX_counter; i++) {
             logLnRawString(String.format("%s",Integer.MAX_VALUE));
         }
         int_counter = 0;
         int_MAX_counter = 0;
+    }
+
+    public static void byteSequenceEnd() {
+        logLnRawString(formatter.anyPrimitiveType(byte_counter));
+        for (int i = 0; i < byte_MAX_counter; i++) {
+            logLnRawString(String.format("%s",Byte.MAX_VALUE));
+        }
+        byte_counter = 0;
+        byte_MAX_counter = 0;
     }
 }
 
