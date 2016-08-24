@@ -22,20 +22,20 @@ public class Logger {
     }
 
     public static void log(int number) {
-        int overflow_count;
+        int overflow_index;
         int_counter += number;
-        overflow_count = (int) (int_counter/Integer.MAX_VALUE);
-        int_MAX_counter += overflow_count;
-        int_counter = int_counter - (Integer.MAX_VALUE * overflow_count);
+        overflow_index = (int) (int_counter/Integer.MAX_VALUE);
+        int_MAX_counter += overflow_index;
+        int_counter = int_counter - (Integer.MAX_VALUE * overflow_index);
         //logLnRawString(formatter.anyPrimitiveType(message));
     }
 
     public static void log(byte number) {
-        int overflow_count;
+        int overflow_index;
         byte_counter += number;
-        overflow_count = (int) (byte_counter/Byte.MAX_VALUE);
-        byte_MAX_counter += overflow_count;
-        byte_counter = byte_counter - (Byte.MAX_VALUE * overflow_count);
+        overflow_index = (int) (byte_counter/Byte.MAX_VALUE);
+        byte_MAX_counter += overflow_index;
+        byte_counter = byte_counter - (Byte.MAX_VALUE * overflow_index);
         //logLnRawString(formatter.anyPrimitiveType(message));
     }
 
