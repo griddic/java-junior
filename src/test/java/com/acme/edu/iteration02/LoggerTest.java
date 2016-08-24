@@ -30,10 +30,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogSequentIntegersAsSum() throws IOException {
         //region when
         Logger.log("str 1");
+        Logger.strSequenceEnd();
         Logger.log(1);
         Logger.log(2);
         Logger.intSequenceEnd();
         Logger.log("str 2");
+        Logger.strSequenceEnd();
         Logger.log(0);
         Logger.intSequenceEnd();
         //endregion
@@ -50,10 +52,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() {
         //region when
         Logger.log("str 1");
+        Logger.strSequenceEnd();
         Logger.log(10);
         Logger.log(Integer.MAX_VALUE);
         Logger.intSequenceEnd();
         Logger.log("str 2");
+        Logger.strSequenceEnd();
         Logger.log(0);
         Logger.intSequenceEnd();
         //endregion
@@ -73,10 +77,12 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     public void shouldLogCorrectlyByteOverflowWhenSequentBytes() {
         //region when
         Logger.log("str 1");
+        Logger.strSequenceEnd();
         Logger.log((byte)10);
         Logger.log((byte)Byte.MAX_VALUE);
         Logger.byteSequenceEnd();
         Logger.log("str 2");
+        Logger.strSequenceEnd();
         Logger.log(0);
         Logger.byteSequenceEnd();
         //endregion
@@ -90,30 +96,29 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
     }
 
-    /*
     @Test
     public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
         //region when
         Logger.log("str 1");
         Logger.log("str 2");
         Logger.log("str 2");
+        Logger.strSequenceEnd();
         Logger.log(0);
+        Logger.intSequenceEnd();
         Logger.log("str 2");
         Logger.log("str 3");
         Logger.log("str 3");
         Logger.log("str 3");
+        Logger.strSequenceEnd();
         //endregion
 
         //region then
-        assertSysoutEquals(
-            "str 1\n" +
-            "str 2 (x2)\n" +
-            "0\n" +
-            "str 2\n" +
-            "str 3 (x3)\n"
-        );
+        assertSysoutContains("str 1");
+        assertSysoutContains("str 2 (x2)");
+        assertSysoutContains("0" );
+        assertSysoutContains("str 2");
+        assertSysoutContains("str 3 (x3)");
         //endregion
     }
 
-    */
 }

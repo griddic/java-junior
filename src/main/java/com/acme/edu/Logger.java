@@ -9,6 +9,9 @@ public class Logger {
     static int byte_counter = 0;
     static int byte_MAX_counter = 0;
 
+    static String last_string = null;
+    static int last_string_counter = 0;
+
     public static void logRawString(String message) {
         handler.write(message);
     }
@@ -41,10 +44,25 @@ public class Logger {
     }
 
     public static void log(String message) {
-        logLnRawString(formatter.string_(message));
+        if (message.equals(last_string)) {
+            ++last_string_counter;
+        } else {
+            if (last_string_counter > 0) {
+                logLnRawString(formatter.stringsSequance(last_string, last_string_counter));
+            } // else in this case is a first string in sequance.
+            last_string = message;
+            last_string_counter = 1;
+        }
+        // logLnRawString(formatter.string_(message));
     }
 
-    public static void log(boolean message) {
+    public static void strSequenceEnd() {
+        logLnRawString(formatter.stringsSequance(last_string, last_string_counter));
+        last_string = null;
+        last_string_counter = 0;
+    }
+
+        public static void log(boolean message) {
         logLnRawString(formatter.anyPrimitiveType(message));
     }
     public static void log(Object message) {
@@ -85,5 +103,13 @@ class Formatter {
     }
     public static String none(Object obj) {
         return String.format("%s", obj);
+    }
+
+    public String stringsSequance(String last_string, int last_string_counter) {
+        if (last_string_counter == 1) {
+            return string_(last_string);
+        } else {
+            return String.format("%s (x%d)", last_string, last_string_counter);
+        }
     }
 }
