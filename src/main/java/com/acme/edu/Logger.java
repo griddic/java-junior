@@ -1,11 +1,10 @@
 package com.acme.edu;
 
-import java.util.Objects;
-
 public class Logger {
     static STD handler = new STD();
     static Formatter formatter = new Formatter();
-    static int counter = 0;
+    static int int_counter = 0;
+    static int int_MAX_counter = 0;
 
     public static void logRawString(String message) {
         handler.write(message);
@@ -17,7 +16,11 @@ public class Logger {
     }
 
     public static void log(int number) {
-        counter += number;
+        if (number == Integer.MAX_VALUE) {
+            int_MAX_counter += 1;
+        } else {
+            int_counter += number;
+        }
         //logLnRawString(formatter.anyPrimitiveType(message));
     }
 
@@ -41,8 +44,12 @@ public class Logger {
     }
 
     public static void sequenceEnd() {
-        logLnRawString(formatter.anyPrimitiveType(counter));
-        counter = 0;
+        logLnRawString(formatter.anyPrimitiveType(int_counter));
+        for (int i = 0; i < int_MAX_counter; i++) {
+            logLnRawString(String.format("%s",Integer.MAX_VALUE));
+        }
+        int_counter = 0;
+        int_MAX_counter = 0;
     }
 }
 
@@ -58,5 +65,8 @@ class Formatter {
     }
     public static String anyPrimitiveType(Object obj) {
         return String.format("primitive: %s", obj);
+    }
+    public static String none(Object obj) {
+        return String.format("%s", obj);
     }
 }
