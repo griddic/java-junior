@@ -2,7 +2,7 @@ package com.acme.edu;
 
 public class Logger {
     static OutStream outStream;
-    static Formatter formatter = new Formatter();
+    static Formatter formatter = new CommonFormatter();
 
     static long int_counter = 0;
     static int int_MAX_counter = 0;
@@ -32,7 +32,7 @@ public class Logger {
         overflow_index = (int) (int_counter/Integer.MAX_VALUE);
         int_MAX_counter += overflow_index;
         int_counter = int_counter - (Integer.MAX_VALUE * overflow_index);
-        //logLnRawString(formatter.anyPrimitiveType(message));
+        //logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
     public static void log(byte number) {
@@ -41,11 +41,11 @@ public class Logger {
         overflow_index = (int) (byte_counter/Byte.MAX_VALUE);
         byte_MAX_counter += overflow_index;
         byte_counter = byte_counter - (Byte.MAX_VALUE * overflow_index);
-        //logLnRawString(formatter.anyPrimitiveType(message));
+        //logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
     public static void log(char message) {
-        logLnRawString(formatter.decorChar(message));
+        logLnRawString(formatter.decorateChar(message));
     }
 
     public static void log(String message) {
@@ -53,29 +53,29 @@ public class Logger {
             ++last_string_counter;
         } else {
             if (last_string_counter > 0) {
-                logLnRawString(formatter.stringsSequance(last_string, last_string_counter));
+                logLnRawString(formatter.decorateStringsSequence(last_string, last_string_counter));
             } // else in this case is a first string in sequance.
             last_string = message;
             last_string_counter = 1;
         }
-        // logLnRawString(formatter.string_(message));
+        // logLnRawString(formatter.decorateString(message));
     }
 
     public static void strSequenceEnd() {
-        logLnRawString(formatter.stringsSequance(last_string, last_string_counter));
+        logLnRawString(formatter.decorateStringsSequence(last_string, last_string_counter));
         last_string = null;
         last_string_counter = 0;
     }
 
         public static void log(boolean message) {
-        logLnRawString(formatter.anyPrimitiveType(message));
+        logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
     public static void log(Object message) {
-        logLnRawString(formatter.decorObject(message));
+        logLnRawString(formatter.decorateObject(message));
     }
 
     public static void intSequenceEnd() {
-        logLnRawString(formatter.anyPrimitiveType(int_counter));
+        logLnRawString(formatter.decorateAnyPrimitiveType(int_counter));
         for (int i = 0; i < int_MAX_counter; i++) {
             logLnRawString(String.format("%s",Integer.MAX_VALUE));
         }
@@ -84,7 +84,7 @@ public class Logger {
     }
 
     public static void byteSequenceEnd() {
-        logLnRawString(formatter.anyPrimitiveType(byte_counter));
+        logLnRawString(formatter.decorateAnyPrimitiveType(byte_counter));
         for (int i = 0; i < byte_MAX_counter; i++) {
             logLnRawString(String.format("%s",Byte.MAX_VALUE));
         }
@@ -99,55 +99,4 @@ public class Logger {
     public static void log(int[][] matrix) {
         logLnRawString(formatter.decorMatrix(matrix));
     }
-
-
-static class Formatter {
-    public String decorChar(char ch) {
-        return String.format("char: %s", ch);
-    }
-    public String string_(String str) {
-        return String.format("string: %s", str);
-    }
-    public String decorObject(Object obj) {
-        return String.format("reference: %s", obj);
-    }
-    public String anyPrimitiveType(Object obj) {
-        return String.format("primitive: %s", obj);
-    }
-    public String none(Object obj) {
-        return String.format("%s", obj);
-    }
-
-    public String stringsSequance(String last_string, int last_string_counter) {
-        if (last_string_counter == 1) {
-            return string_(last_string);
-        } else {
-            return String.format("%s (x%d)", last_string, last_string_counter);
-        }
-    }
-
-    public String arrayToString(int[] array) {
-        String result = ""; //= "{-1, 0, 1}";
-        //System.out.println(array.length - 1);
-        for (int i = 0; i < (array.length - 1); i++) {
-            result = result + String.format("%d, ", array[i]);
-        }
-        result = result + String.format("%d", array[array.length - 1]);
-        return String.format("{%s}", result);
-        }
-
-    public String decorArray(int[] array) {
-        String message = arrayToString(array);
-        return String.format("primitives array: %s", message);
-    }
-
-    public String decorMatrix(int[][] matrix) {
-        String result = "primitives matrix: {" + System.lineSeparator();
-        for (int i = 0; i <= (matrix.length - 1); i++) {
-            result = result + formatter.arrayToString(matrix[i]) + System.lineSeparator();
-        }
-        result = result + "}";
-        return result;
-    }
-}
 }
