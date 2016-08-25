@@ -18,15 +18,18 @@ public class Logger {
         this.formatter = formatter;
     }
 
-    public static void logRawString(String message) {
+    private static void logRawString(String message) {
         outStream.write(message);
     }
 
 
-    public static void logLnRawString(String message) {
+    private static void logLnRawString(String message) {
         logRawString(message + System.lineSeparator());
     }
 
+    /** Method log (int) accumulates values for integer sequences.
+     * In the end of any integer sequence intSequenceEnd() method must be called.
+     */
     public static void log(int number) {
         int overflow_index;
         int_counter += number;
@@ -36,6 +39,9 @@ public class Logger {
         //logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
+    /** Method log (byte) accumulates values for byte sequences.
+     * In the end of any byte sequence byteSequenceEnd() method must be called.
+     */
     public static void log(byte number) {
         int overflow_index;
         byte_counter += number;
@@ -45,10 +51,17 @@ public class Logger {
         //logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
+    /** This method logs char data.
+     *
+     */
     public static void log(char message) {
         logLnRawString(formatter.decorateChar(message));
     }
 
+    /** Method log (string) accumulates number of repeating string for string sequences.
+     * In the end of any string sequence strSequenceEnd() method must be called.
+     *
+     */
     public static void log(String message) {
         if (message.equals(last_string)) {
             ++last_string_counter;
@@ -62,6 +75,7 @@ public class Logger {
         // logLnRawString(formatter.decorateString(message));
     }
 
+
     public static void strSequenceEnd() {
         logLnRawString(formatter.decorateStringsSequence(last_string, last_string_counter));
         last_string = null;
@@ -71,6 +85,7 @@ public class Logger {
         public static void log(boolean message) {
         logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
+
     public static void log(Object message) {
         logLnRawString(formatter.decorateObject(message));
     }

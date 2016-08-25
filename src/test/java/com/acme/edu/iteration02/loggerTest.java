@@ -118,6 +118,8 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
         logger.log("str 3");
         logger.log("str 3");
         logger.strSequenceEnd();
+        logger.log("str 4");
+        logger.strSequenceEnd();
         //endregion
 
         //region then
@@ -126,6 +128,7 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
         assertSysoutContains("0" );
         assertSysoutContains("str 2");
         assertSysoutContains("str 3 (x3)");
+        assertSysoutContains("str 4");
         //endregion
     }
 
