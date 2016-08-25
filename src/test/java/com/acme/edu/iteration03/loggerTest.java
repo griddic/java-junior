@@ -1,5 +1,6 @@
 package com.acme.edu.iteration03;
 
+import com.acme.edu.CommonFormatter;
 import com.acme.edu.Logger;
 import com.acme.edu.STD;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
@@ -16,7 +17,10 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
     public void setUpSystemOut() throws IOException {
         resetOut();
         captureSysout();
-        logger =  new Logger(new STD());
+        logger =  new Logger(new STD(),
+                             new CommonFormatter("char: %s", "string: %s", "reference: %s",
+                                                 "primitive: %s", "%s (x%d)", "primitives array: %s",
+                                                 "primitives matrix: {" + System.lineSeparator() + "%s}"));
 
     }
 

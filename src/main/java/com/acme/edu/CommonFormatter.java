@@ -4,28 +4,49 @@ package com.acme.edu;
  * Created by Java_6 on 25.08.2016.
  */
 public class CommonFormatter implements Formatter {
+    private String chatTemplate = "char: %s";
+    private String stringTemplate = "string: %s";
+    private String obgectTemplate = "reference: %s";
+    private String primitiveTemplate = "primitive: %s";
+    private String stringSequenceTemplate = "%s (x%d)";
+    private String primitivesArrayTemplate = "primitives array: %s";
+    private String primitivesMatrixTemplate = "primitives matrix: {" + System.lineSeparator() + "%s}";
+
+    public CommonFormatter () {
+
+    }
+
+    public CommonFormatter(String chatTemplate, String stringTemplate, String obgectTemplate, String primitiveTemplate, String stringSequenceTemplate, String primitivesArrayTemplate, String primitivesMatrixTemplate) {
+        this.chatTemplate = chatTemplate;
+        this.stringTemplate = stringTemplate;
+        this.obgectTemplate = obgectTemplate;
+        this.primitiveTemplate = primitiveTemplate;
+        this.stringSequenceTemplate = stringSequenceTemplate;
+        this.primitivesArrayTemplate = primitivesArrayTemplate;
+        this.primitivesMatrixTemplate = primitivesMatrixTemplate;
+    }
 
     public String decorateChar(char ch) {
-        return String.format("char: %s", ch);
+        return String.format(chatTemplate, ch);
     }
 
     public String decorateString(String str) {
-        return String.format("string: %s", str);
+        return String.format(stringTemplate, str);
     }
 
     public String decorateObject(Object obj) {
-        return String.format("reference: %s", obj);
+        return String.format(obgectTemplate, obj);
     }
 
     public String decorateAnyPrimitiveType(Object obj) {
-        return String.format("primitive: %s", obj);
+        return String.format(primitiveTemplate, obj);
     }
 
     public String decorateStringsSequence(String last_string, int last_string_counter) {
         if (last_string_counter == 1) {
             return decorateString(last_string);
         } else {
-            return String.format("%s (x%d)", last_string, last_string_counter);
+            return String.format(stringSequenceTemplate, last_string, last_string_counter);
         }
     }
 
@@ -40,15 +61,14 @@ public class CommonFormatter implements Formatter {
 
     public String decorArray(int[] array) {
         String message = arrayToString(array);
-        return String.format("primitives array: %s", message);
+        return String.format(primitivesArrayTemplate, message);
     }
 
     public String decorMatrix(int[][] matrix) {
-        String result = "primitives matrix: {" + System.lineSeparator();
+        String array = "";
         for (int i = 0; i <= (matrix.length - 1); i++) {
-            result = result + this.arrayToString(matrix[i]) + System.lineSeparator();
+            array = array + this.arrayToString(matrix[i]) + System.lineSeparator();
         }
-        result = result + "}";
-        return result;
+        return String.format(primitivesMatrixTemplate, array);
     }
 }

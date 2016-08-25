@@ -2,7 +2,7 @@ package com.acme.edu;
 
 public class Logger {
     static OutStream outStream;
-    static Formatter formatter = new CommonFormatter();
+    static Formatter formatter;
 
     static long int_counter = 0;
     static int int_MAX_counter = 0;
@@ -13,8 +13,9 @@ public class Logger {
     static String last_string = null;
     static int last_string_counter = 0;
 
-    public Logger(OutStream outStream) {
+    public Logger(OutStream outStream, Formatter formatter) {
         this.outStream = outStream;
+        this.formatter = formatter;
     }
 
     public static void logRawString(String message) {
