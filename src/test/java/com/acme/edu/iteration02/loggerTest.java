@@ -1,6 +1,7 @@
 package com.acme.edu.iteration02;
 
 import com.acme.edu.Logger;
+import com.acme.edu.STD;
 import com.acme.edu.SysoutCaptureAndAssertionAbility;
 import org.junit.After;
 import org.junit.Before;
@@ -8,12 +9,15 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-public class LoggerTest implements SysoutCaptureAndAssertionAbility {
+public class loggerTest implements SysoutCaptureAndAssertionAbility {
     //region given
+    private Logger logger;
     @Before
     public void setUpSystemOut() throws IOException {
         resetOut();
         captureSysout();
+        logger =  new Logger(new STD());
+
     }
 
     @After
@@ -24,20 +28,20 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
 
 
 
-    //TODO: implement Logger solution to match specification as tests
+    //TODO: implement logger solution to match specification as tests
 
     @Test
     public void shouldLogSequentIntegersAsSum() throws IOException {
         //region when
-        Logger.log("str 1");
-        Logger.strSequenceEnd();
-        Logger.log(1);
-        Logger.log(2);
-        Logger.intSequenceEnd();
-        Logger.log("str 2");
-        Logger.strSequenceEnd();
-        Logger.log(0);
-        Logger.intSequenceEnd();
+        logger.log("str 1");
+        logger.strSequenceEnd();
+        logger.log(1);
+        logger.log(2);
+        logger.intSequenceEnd();
+        logger.log("str 2");
+        logger.strSequenceEnd();
+        logger.log(0);
+        logger.intSequenceEnd();
         //endregion
 
         //region then
@@ -51,15 +55,15 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogCorrectlyIntegerOverflowWhenSequentIntegers() {
         //region when
-        Logger.log("str 1");
-        Logger.strSequenceEnd();
-        Logger.log(10);
-        Logger.log(Integer.MAX_VALUE);
-        Logger.intSequenceEnd();
-        Logger.log("str 2");
-        Logger.strSequenceEnd();
-        Logger.log(0);
-        Logger.intSequenceEnd();
+        logger.log("str 1");
+        logger.strSequenceEnd();
+        logger.log(10);
+        logger.log(Integer.MAX_VALUE);
+        logger.intSequenceEnd();
+        logger.log("str 2");
+        logger.strSequenceEnd();
+        logger.log(0);
+        logger.intSequenceEnd();
         //endregion
 
         //region then
@@ -76,15 +80,15 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogCorrectlyByteOverflowWhenSequentBytes() {
         //region when
-        Logger.log("str 1");
-        Logger.strSequenceEnd();
-        Logger.log((byte)10);
-        Logger.log((byte)Byte.MAX_VALUE);
-        Logger.byteSequenceEnd();
-        Logger.log("str 2");
-        Logger.strSequenceEnd();
-        Logger.log(0);
-        Logger.byteSequenceEnd();
+        logger.log("str 1");
+        logger.strSequenceEnd();
+        logger.log((byte)10);
+        logger.log((byte)Byte.MAX_VALUE);
+        logger.byteSequenceEnd();
+        logger.log("str 2");
+        logger.strSequenceEnd();
+        logger.log(0);
+        logger.byteSequenceEnd();
         //endregion
 
         //region then
@@ -99,17 +103,17 @@ public class LoggerTest implements SysoutCaptureAndAssertionAbility {
     @Test
     public void shouldLogSameSubsequentStringsWithoutRepeat() throws IOException {
         //region when
-        Logger.log("str 1");
-        Logger.log("str 2");
-        Logger.log("str 2");
-        Logger.strSequenceEnd();
-        Logger.log(0);
-        Logger.intSequenceEnd();
-        Logger.log("str 2");
-        Logger.log("str 3");
-        Logger.log("str 3");
-        Logger.log("str 3");
-        Logger.strSequenceEnd();
+        logger.log("str 1");
+        logger.log("str 2");
+        logger.log("str 2");
+        logger.strSequenceEnd();
+        logger.log(0);
+        logger.intSequenceEnd();
+        logger.log("str 2");
+        logger.log("str 3");
+        logger.log("str 3");
+        logger.log("str 3");
+        logger.strSequenceEnd();
         //endregion
 
         //region then

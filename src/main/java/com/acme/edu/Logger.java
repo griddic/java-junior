@@ -1,8 +1,9 @@
 package com.acme.edu;
 
 public class Logger {
-    static STD handler = new STD();
+    static OutStream outStream;
     static Formatter formatter = new Formatter();
+
     static long int_counter = 0;
     static int int_MAX_counter = 0;
 
@@ -12,8 +13,12 @@ public class Logger {
     static String last_string = null;
     static int last_string_counter = 0;
 
+    public Logger(OutStream outStream) {
+        this.outStream = outStream;
+    }
+
     public static void logRawString(String message) {
-        handler.write(message);
+        outStream.write(message);
     }
 
 
