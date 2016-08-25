@@ -40,7 +40,7 @@ public class Logger {
     }
 
     public static void log(char message) {
-        logLnRawString(formatter.char_(message));
+        logLnRawString(formatter.decorChar(message));
     }
 
     public static void log(String message) {
@@ -66,7 +66,7 @@ public class Logger {
         logLnRawString(formatter.anyPrimitiveType(message));
     }
     public static void log(Object message) {
-        logLnRawString(formatter.object_(message));
+        logLnRawString(formatter.decorObject(message));
     }
 
     public static void intSequenceEnd() {
@@ -88,17 +88,22 @@ public class Logger {
     }
 
     public static void log(int[] array) {
-        logLnRawString(formatter.array_(array));
-}
+        logLnRawString(formatter.decorArray(array));
+    }
+
+    public static void log(int[][] matrix) {
+        logLnRawString(formatter.decorMatrix(matrix));
+    }
+
 
 static class Formatter {
-    public String char_ (char ch) {
+    public String decorChar(char ch) {
         return String.format("char: %s", ch);
     }
     public String string_(String str) {
         return String.format("string: %s", str);
     }
-    public String object_(Object obj) {
+    public String decorObject(Object obj) {
         return String.format("reference: %s", obj);
     }
     public String anyPrimitiveType(Object obj) {
@@ -116,14 +121,28 @@ static class Formatter {
         }
     }
 
-    public String array_(int[] array) {
+    public String arrayToString(int[] array) {
         String result = ""; //= "{-1, 0, 1}";
         //System.out.println(array.length - 1);
         for (int i = 0; i < (array.length - 1); i++) {
             result = result + String.format("%d, ", array[i]);
         }
         result = result + String.format("%d", array[array.length - 1]);
-        return String.format("primitives array: {%s}", result);
+        return String.format("{%s}", result);
         }
+
+    public String decorArray(int[] array) {
+        String message = arrayToString(array);
+        return String.format("primitives array: %s", message);
     }
+
+    public String decorMatrix(int[][] matrix) {
+        String result = "primitives matrix: {" + System.lineSeparator();
+        for (int i = 0; i <= (matrix.length - 1); i++) {
+            result = result + formatter.arrayToString(matrix[i]) + System.lineSeparator();
+        }
+        result = result + "}";
+        return result;
+    }
+}
 }
