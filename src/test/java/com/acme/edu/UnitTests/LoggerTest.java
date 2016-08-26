@@ -20,14 +20,14 @@ public class LoggerTest {
     public void shouldAccumulateNumbersForIntSequences() {
 
         //Given
-        Formatter stub = mock(Formatter.class);
-        OutStream muk = mock(OutStream.class);
-        Logger logger = new Logger (stub, muk);
-        when(stub.decorateAnyPrimitiveType((long) 5)).thenReturn("primitive: 5");
+        Formatter formatter = mock(Formatter.class);
+        OutStream outStream = mock(OutStream.class);
+        Logger logger = new Logger (formatter, outStream);
+        when(formatter.decorateAnyPrimitiveType((long) 5)).thenReturn("primitive: 5");
         //When
         logger.log(5);
         logger.intSequenceEnd();
         //Then
-        verify(muk).write("primitive: 5" + System.lineSeparator());
+        verify(outStream).write("primitive: 5" + System.lineSeparator());
     }
 }
