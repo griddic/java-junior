@@ -3,10 +3,12 @@ package com.acme.edu.iteration03;
 import com.acme.edu.*;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 
+@Ignore
 public class loggerTest implements SysoutCaptureAndAssertionAbility {
     //region given
     private Logger logger;

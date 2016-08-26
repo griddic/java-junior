@@ -73,28 +73,24 @@ public class LoggerTest {
                 + System.lineSeparator());
     }
 
-    /*@Test
+    @Test
     public void shouldLogIntMatrix () {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
         Logger logger = new Logger (formatter, outStream);
-        when(formatter.decorMatrix(new int[][] {{1,2,3},{3,2,1}}))
+        int[][] matrix = {{1, 2, 3}, {3, 2, 1}};
+        when(formatter.decorMatrix(matrix))
                 .thenReturn("primitives matrix: {" + System.lineSeparator() +
                         "{1, 2, 3}" + System.lineSeparator() +
                         "{3, 2, 1}" + System.lineSeparator() +
-                        "}" + System.lineSeparator());
+                        "}");
         //When
-        logger.log(new int[][] {{1,2,3}, {3,2,1}});
-        System.out.println(formatter.decorMatrix(new int[][] {{1,2,3},{3,2,1}}));
-        System.out.println("primitives matrix: {" + System.lineSeparator() +
-                "{1, 2, 3}" + System.lineSeparator() +
-                "{3, 2, 1}" + System.lineSeparator() +
-                "}" + System.lineSeparator());
+        logger.log(matrix);
         //Then
         verify(outStream).write("primitives matrix: {" + System.lineSeparator() +
                 "{1, 2, 3}" + System.lineSeparator() +
                 "{3, 2, 1}" + System.lineSeparator() +
                 "}" + System.lineSeparator());
-    }*/
+    }
 }
