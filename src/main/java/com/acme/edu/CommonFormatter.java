@@ -4,16 +4,18 @@ package com.acme.edu;
  * Created by Java_6 on 25.08.2016.
  */
 public class CommonFormatter implements Formatter {
-    private String chatTemplate = "char: %s";
-    private String stringTemplate = "string: %s";
-    private String obgectTemplate = "reference: %s";
-    private String primitiveTemplate = "primitive: %s";
-    private String stringSequenceTemplate = "%s (x%d)";
-    private String primitivesArrayTemplate = "primitives array: %s";
-    private String primitivesMatrixTemplate = "primitives matrix: {" + System.lineSeparator() + "%s}";
+    private String chatTemplate;
+    private String stringTemplate;
+    private String obgectTemplate;
+    private String primitiveTemplate;
+    private String stringSequenceTemplate;
+    private String primitivesArrayTemplate;
+    private String primitivesMatrixTemplate;
 
     public CommonFormatter () {
-
+        this("char: %s", "string: %s", "reference: %s",
+                "primitive: %s", "%s (x%d)", "primitives array: %s",
+                "primitives matrix: {" + System.lineSeparator() + "%s}");
     }
 
     public CommonFormatter(String chatTemplate, String stringTemplate, String obgectTemplate, String primitiveTemplate, String stringSequenceTemplate, String primitivesArrayTemplate, String primitivesMatrixTemplate) {
