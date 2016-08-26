@@ -1,0 +1,36 @@
+package com.acme.edu.UnitTests;
+import static org.fest.assertions.Assertions.assertThat; // main one
+
+import com.acme.edu.CommonFormatter;
+import com.acme.edu.Formatter;
+import org.junit.Test;
+
+/**
+ * Created by Java_5 on 26.08.2016.
+ */
+public class CommonFormatterTest {
+    Formatter formatter = new CommonFormatter("char: %s", "string: %s", "reference: %s",
+            "primitive: %s", "%s (x%d)", "primitives array: %s",
+            "primitives matrix: {" + System.lineSeparator() + "%s}");
+
+    @Test
+    public void decorateIntPrimitive () {
+        assertThat(formatter.decorateAnyPrimitiveType(5)).isEqualTo("primitive: 5");
+    }
+    @Test
+    public void decorateChar () {
+        assertThat(formatter.decorateChar('a')).isEqualTo("char: a");
+    }
+    @Test
+    public void decorateString () {
+        assertThat(formatter.decorateString("Hello world!")).isEqualTo("string: Hello world!");
+    }
+    @Test
+    public void decorateStrings () {
+        assertThat(formatter.decorateStringsSequence("Hello world!", 2)).isEqualTo("Hello world! (x2)");
+    }
+    @Test
+    public void decorateObject () {
+        assertThat(formatter.decorateObject(5)).isEqualTo("reference: 5");
+    }
+}
