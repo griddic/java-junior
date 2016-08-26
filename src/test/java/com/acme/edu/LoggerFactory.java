@@ -13,4 +13,8 @@ public class LoggerFactory {
                 message -> System.out.println("Hello! " + message + " !!!!1!!"));
         return logger;
     }
+
+    public static Logger consoleOutOnlyLogger () {
+        return new Logger(new CommonFormatter(), new ConsoleOutput());
+    }
 }
