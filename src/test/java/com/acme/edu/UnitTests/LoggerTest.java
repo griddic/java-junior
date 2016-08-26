@@ -30,6 +30,22 @@ public class LoggerTest {
     }
 
     @Test
+    public void shouldAccumulateNumbersForIntSequencesWithOwerflow() {
+        //Given
+        Formatter formatter = mock(Formatter.class);
+        OutStream outStream = mock(OutStream.class);
+        Logger logger = new Logger (formatter, outStream);
+        when(formatter.decorateAnyPrimitiveType((long) 5)).thenReturn("primitive: 5");
+        //When
+        logger.log(5);
+        logger.log(Integer.MAX_VALUE);
+        logger.intSequenceEnd();
+        //Then
+        verify(outStream).write("primitive: 5" + System.lineSeparator());
+        verify(outStream).write(String.format("%s",Integer.MAX_VALUE) + System.lineSeparator());
+    }
+
+    @Test
     public void shouldAccumulateNumbersForByteSequences() {
         //Given
         Formatter formatter = mock(Formatter.class);
@@ -41,6 +57,22 @@ public class LoggerTest {
         logger.byteSequenceEnd();
         //Then
         verify(outStream).write("primitive: 5" + System.lineSeparator());
+    }
+
+    @Test
+    public void shouldAccumulateNumbersForByteSequencesWithOwerflow() {
+        //Given
+        Formatter formatter = mock(Formatter.class);
+        OutStream outStream = mock(OutStream.class);
+        Logger logger = new Logger (formatter, outStream);
+        when(formatter.decorateAnyPrimitiveType((int) 5)).thenReturn("primitive: 5");
+        //When
+        logger.log((byte)5);
+        logger.log(Byte.MAX_VALUE);
+        logger.byteSequenceEnd();
+        //Then
+        verify(outStream).write("primitive: 5" + System.lineSeparator());
+        verify(outStream).write(String.format("%s",Byte.MAX_VALUE) + System.lineSeparator());
     }
 
     @Test
@@ -93,4 +125,31 @@ public class LoggerTest {
                 "{3, 2, 1}" + System.lineSeparator() +
                 "}" + System.lineSeparator());
     }
+
+    @Test
+    public void logChar() {
+        //Given
+        Formatter formatter = mock(Formatter.class);
+        OutStream outStream = mock(OutStream.class);
+        Logger logger = new Logger (formatter, outStream);
+        when(formatter.decorateChar('a')).thenReturn("char: a");
+        //When
+        logger.log('a');
+        //Then
+        verify(outStream).write("char: a" + System.lineSeparator());
+    }
+
+    @Test
+    public void logBoolean() {
+        //Given
+        Formatter formatter = mock(Formatter.class);
+        OutStream outStream = mock(OutStream.class);
+        Logger logger = new Logger (formatter, outStream);
+        when(formatter.decorateAnyPrimitiveType(true)).thenReturn("char: true");
+        //When
+        logger.log(true);
+        //Then
+        verify(outStream).write("char: true" + System.lineSeparator());
+    }
+
 }
