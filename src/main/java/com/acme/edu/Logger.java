@@ -1,7 +1,7 @@
 package com.acme.edu;
 
 public class Logger {
-    static OutStream outStream;
+    static OutputsContainer outStreams;
     static Formatter formatter;
 
     static long summatorForIntSequence = 0;
@@ -13,13 +13,23 @@ public class Logger {
     static String lastStringInStringsSequence = null;
     static int quantityOfLastStringRepeated = 0;
 
-    public Logger(OutStream outStream, Formatter formatter) {
-        this.outStream = outStream;
+    public Logger(Formatter formatter, OutStream... outStreams) {
+        this.outStreams = new OutputsContainer(outStreams);
         this.formatter = formatter;
     }
 
+    public static Logger createTestLogger () {
+        Logger logger = new Logger(
+                new CommonFormatter("char: %s", "string: %s", "reference: %s",
+                        "primitive: %s", "%s (x%d)", "primitives array: %s",
+                        "primitives matrix: {" + System.lineSeparator() + "%s}"),
+                new ConsoleOutput(),
+                message -> System.out.println("Hello! " + message + " !!!!1!!"));
+        return logger;
+    }
+
     private static void logRawString(String message) {
-        outStream.write(message);
+        outStreams.write(message);
     }
 
 

@@ -1,9 +1,6 @@
 package com.acme.edu.iteration03;
 
-import com.acme.edu.CommonFormatter;
-import com.acme.edu.Logger;
-import com.acme.edu.ConsoleOutput;
-import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import com.acme.edu.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -17,10 +14,7 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
     public void setUpSystemOut() throws IOException {
         resetOut();
         captureSysout();
-        logger =  new Logger(new ConsoleOutput(),
-                             new CommonFormatter("char: %s", "string: %s", "reference: %s",
-                                                 "primitive: %s", "%s (x%d)", "primitives array: %s",
-                                                 "primitives matrix: {" + System.lineSeparator() + "%s}"));
+        logger =  Logger.createTestLogger();
 
     }
 
@@ -40,8 +34,8 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutEquals(
-            "primitives array: {-1, 0, 1}" + System.lineSeparator()
+        assertSysoutContains(
+            "primitives array: {-1, 0, 1}"
         );
         //endregion
     }
@@ -54,7 +48,7 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
         //endregion
 
         //region then
-        assertSysoutEquals(
+        assertSysoutContains(
             "primitives matrix: {" + System.lineSeparator() +
                 "{-1, 0, 1}" + System.lineSeparator() +
                 "{1, 2, 3}" + System.lineSeparator() +
