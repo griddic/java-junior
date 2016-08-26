@@ -18,17 +18,7 @@ public class Logger {
         this.formatter = formatter;
     }
 
-    public static Logger createTestLogger () {
-        Logger logger = new Logger(
-                new CommonFormatter("char: %s", "string: %s", "reference: %s",
-                        "primitive: %s", "%s (x%d)", "primitives array: %s",
-                        "primitives matrix: {" + System.lineSeparator() + "%s}"),
-                new ConsoleOutput(),
-                message -> System.out.println("Hello! " + message + " !!!!1!!"));
-        return logger;
-    }
-
-    private static void logRawString(String message) {
+        private static void logRawString(String message) {
         outStreams.write(message);
     }
 

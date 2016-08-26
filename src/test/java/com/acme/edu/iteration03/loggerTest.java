@@ -14,7 +14,7 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
     public void setUpSystemOut() throws IOException {
         resetOut();
         captureSysout();
-        logger =  Logger.createTestLogger();
+        logger =  LoggerFactory.createTestLogger();
 
     }
 
