@@ -1,17 +1,17 @@
 package com.acme.edu;
 
 public class Logger {
-    OutputsContainer outStreams;
-    Formatter formatter;
+    private OutputsContainer outStreams;
+    private Formatter formatter;
 
-    long summatorForIntSequence = 0;
-    int ammountOfMaxIntegerOverflow = 0;
+    private long summatorForIntSequence = 0;
+    private int ammountOfMaxIntegerOverflow = 0;
 
-    int summatorForByteSequence = 0;
-    int ammountOfMaxByteOverflow = 0;
+    private int summatorForByteSequence = 0;
+    private int ammountOfMaxByteOverflow = 0;
 
-    String lastStringInStringsSequence = null;
-    int quantityOfLastStringRepeated = 0;
+    private String lastStringInStringsSequence = null;
+    private int quantityOfLastStringRepeated = 0;
 
     public Logger(Formatter formatter, OutStream... outStreams) {
         this.outStreams = new OutputsContainer(outStreams);
@@ -44,7 +44,6 @@ public class Logger {
         int additionToOverflow = (int) (summatorForIntSequence /Integer.MAX_VALUE);
         ammountOfMaxIntegerOverflow += additionToOverflow;
         summatorForIntSequence = summatorForIntSequence - (Integer.MAX_VALUE * additionToOverflow);
-        //logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
     /** Method log (byte) accumulates values for byte sequences.

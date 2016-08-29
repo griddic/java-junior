@@ -30,22 +30,27 @@ public class CommonFormatter implements Formatter {
         this.primitivesMatrixTemplate = primitivesMatrixTemplate;
     }
 
+    @Override
     public String decorateChar(char ch) {
         return String.format(chatTemplate, ch);
     }
 
+    @Override
     public String decorateString(String str) {
         return String.format(stringTemplate, str);
     }
 
+    @Override
     public String decorateObject(Object obj) {
         return String.format(obgectTemplate, obj);
     }
 
+    @Override
     public String decorateAnyPrimitiveType(Object obj) {
         return String.format(primitiveTemplate, obj);
     }
 
+    @Override
     public String decorateStringsSequence(String last_string, int last_string_counter) {
         if (last_string_counter == 1) {
             return decorateString(last_string);
@@ -54,6 +59,7 @@ public class CommonFormatter implements Formatter {
         }
     }
 
+    @Override
     public String arrayToString(int[] array) {
         StringBuffer result = new StringBuffer("");
         for (int i = 0; i < (array.length - 1); i++) {
@@ -63,11 +69,13 @@ public class CommonFormatter implements Formatter {
         return String.format("{%s}", result);
     }
 
+    @Override
     public String decorArray(int[] array) {
         String message = arrayToString(array);
         return String.format(primitivesArrayTemplate, message);
     }
 
+    @Override
     public String decorMatrix(int[][] matrix) {
         StringBuffer array = new StringBuffer("");
         for (int i = 0; i <= (matrix.length - 1); i++) {
