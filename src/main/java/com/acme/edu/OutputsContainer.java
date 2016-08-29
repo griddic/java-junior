@@ -13,8 +13,7 @@ public class OutputsContainer implements OutStream {
     @Override
     public void write(String message)
             throws OutStreamUnableToOpenException, OutStreamUnableToWriteException {
-        for (OutStream stream:
-             streams) {
+        for (OutStream stream: streams) {
             stream.write(message);
         }
     }

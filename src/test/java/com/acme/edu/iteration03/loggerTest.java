@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 
-@Ignore
+
 public class loggerTest implements SysoutCaptureAndAssertionAbility {
     //region given
     private Logger logger;
@@ -62,6 +62,7 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
 
 
 
+    /*
     @Test
     public void shouldLogIntegersMulitidimentionalArray() throws IOException {
         //region when
@@ -80,7 +81,6 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
     }
 
 
-    /*
     @Test
     public void shouldLogStringsWithOneMethodCall() throws IOException {
         //region when

@@ -1,5 +1,7 @@
 package com.acme.edu;
 
+import java.lang.StringBuffer;
+
 /**
  * Created by Java_6 on 25.08.2016.
  */
@@ -53,11 +55,11 @@ public class CommonFormatter implements Formatter {
     }
 
     public String arrayToString(int[] array) {
-        String result = ""; //= "{-1, 0, 1}";
+        StringBuffer result = new StringBuffer("");
         for (int i = 0; i < (array.length - 1); i++) {
-            result = result + String.format("%d, ", array[i]);
+            result.append(String.format("%d, ", array[i]));
         }
-        result = result + String.format("%d", array[array.length - 1]);
+        result.append(String.format("%d", array[array.length - 1]));
         return String.format("{%s}", result);
     }
 
@@ -67,9 +69,9 @@ public class CommonFormatter implements Formatter {
     }
 
     public String decorMatrix(int[][] matrix) {
-        String array = "";
+        StringBuffer array = new StringBuffer("");
         for (int i = 0; i <= (matrix.length - 1); i++) {
-            array = array + this.arrayToString(matrix[i]) + System.lineSeparator();
+            array.append(this.arrayToString(matrix[i]) + System.lineSeparator());
         }
         return String.format(primitivesMatrixTemplate, array);
     }

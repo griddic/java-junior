@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import java.io.*;
 
-@Ignore
+
 public class loggerTest implements SysoutCaptureAndAssertionAbility {
     //region given
     private Logger logger;

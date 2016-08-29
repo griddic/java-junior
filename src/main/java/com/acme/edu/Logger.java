@@ -1,17 +1,17 @@
 package com.acme.edu;
 
 public class Logger {
-    static OutputsContainer outStreams;
-    static Formatter formatter;
+    OutputsContainer outStreams;
+    Formatter formatter;
 
-    static long summatorForIntSequence = 0;
-    static int ammountOfMaxIntegerOverflow = 0;
+    long summatorForIntSequence = 0;
+    int ammountOfMaxIntegerOverflow = 0;
 
-    static int summatorForByteSequence = 0;
-    static int ammountOfMaxByteOverflow = 0;
+    int summatorForByteSequence = 0;
+    int ammountOfMaxByteOverflow = 0;
 
-    static String lastStringInStringsSequence = null;
-    static int quantityOfLastStringRepeated = 0;
+    String lastStringInStringsSequence = null;
+    int quantityOfLastStringRepeated = 0;
 
     public Logger(Formatter formatter, OutStream... outStreams) {
         this.outStreams = new OutputsContainer(outStreams);
@@ -19,7 +19,7 @@ public class Logger {
     }
 
 
-    private static void logRawString(String message) {
+    private void logRawString(String message) {
         try {
             outStreams.write(message);
         }
@@ -32,14 +32,14 @@ public class Logger {
     }
 
 
-    private static void logLnRawString(String message) {
+    private void logLnRawString(String message) {
         logRawString(message + System.lineSeparator());
     }
 
     /** Method log (int) accumulates values for integer sequences.
      * In the end of any integer sequence intSequenceEnd() method must be called.
      */
-    public static void log(int number) {
+    public void log(int number) {
         summatorForIntSequence += number;
         int additionToOverflow = (int) (summatorForIntSequence /Integer.MAX_VALUE);
         ammountOfMaxIntegerOverflow += additionToOverflow;
@@ -50,19 +50,18 @@ public class Logger {
     /** Method log (byte) accumulates values for byte sequences.
      * In the end of any byte sequence byteSequenceEnd() method must be called.
      */
-    public static void log(byte number) {
+    public void log(byte number) {
         int additionToOverflow;
         summatorForByteSequence += number;
         additionToOverflow = (int) (summatorForByteSequence /Byte.MAX_VALUE);
         ammountOfMaxByteOverflow += additionToOverflow;
         summatorForByteSequence = summatorForByteSequence - (Byte.MAX_VALUE * additionToOverflow);
-        //logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
     /** This method logs char data.
      *
      */
-    public static void log(char message) {
+    public void log(char message) {
         logLnRawString(formatter.decorateChar(message));
     }
 
@@ -70,7 +69,7 @@ public class Logger {
      * In the end of any string sequence strSequenceEnd() method must be called.
      *
      */
-    public static void log(String message) {
+    public void log(String message) {
         if (message.equals(lastStringInStringsSequence)) {
             ++quantityOfLastStringRepeated;
         } else {
@@ -80,25 +79,24 @@ public class Logger {
             lastStringInStringsSequence = message;
             quantityOfLastStringRepeated = 1;
         }
-        // logLnRawString(formatter.decorateString(message));
     }
 
 
-    public static void strSequenceEnd() {
+    public void strSequenceEnd() {
         logLnRawString(formatter.decorateStringsSequence(lastStringInStringsSequence, quantityOfLastStringRepeated));
         lastStringInStringsSequence = null;
         quantityOfLastStringRepeated = 0;
     }
 
-        public static void log(boolean message) {
+        public void log(boolean message) {
         logLnRawString(formatter.decorateAnyPrimitiveType(message));
     }
 
-    public static void log(Object message) {
+    public void log(Object message) {
         logLnRawString(formatter.decorateObject(message));
     }
 
-    public static void intSequenceEnd() {
+    public void intSequenceEnd() {
         logLnRawString(formatter.decorateAnyPrimitiveType(summatorForIntSequence));
         for (int i = 0; i < ammountOfMaxIntegerOverflow; i++) {
             logLnRawString(String.format("%s",Integer.MAX_VALUE));
@@ -107,7 +105,7 @@ public class Logger {
         ammountOfMaxIntegerOverflow = 0;
     }
 
-    public static void byteSequenceEnd() {
+    public void byteSequenceEnd() {
         logLnRawString(formatter.decorateAnyPrimitiveType(summatorForByteSequence));
         for (int i = 0; i < ammountOfMaxByteOverflow; i++) {
             logLnRawString(String.format("%s",Byte.MAX_VALUE));
@@ -116,11 +114,11 @@ public class Logger {
         ammountOfMaxByteOverflow = 0;
     }
 
-    public static void log(int[] array) {
+    public void log(int[] array) {
         logLnRawString(formatter.decorArray(array));
     }
 
-    public static void log(int[][] matrix) {
+    public void log(int[][] matrix) {
         logLnRawString(formatter.decorMatrix(matrix));
     }
 }
