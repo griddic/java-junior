@@ -60,7 +60,7 @@ public class CommonFormatter implements Formatter {
 
     @Override
     public String arrayToString(int[] array) {
-        StringBuffer result = new StringBuffer("");
+        StringBuilder result = new StringBuilder("");
         for (int i = 0; i < (array.length - 1); i++) {
             result.append(String.format("%d, ", array[i]));
         }
@@ -76,7 +76,7 @@ public class CommonFormatter implements Formatter {
 
     @Override
     public String decorMatrix(int[][] matrix) {
-        StringBuffer array = new StringBuffer("");
+        StringBuilder array = new StringBuilder("");
         for (int i = 0; i <= (matrix.length - 1); i++) {
             array.append(this.arrayToString(matrix[i]) + System.lineSeparator());
         }
