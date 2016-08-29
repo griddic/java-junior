@@ -1,6 +1,5 @@
 package com.acme.edu;
 
-import java.lang.StringBuffer;
 
 /**
  * Created by Java_6 on 25.08.2016.
@@ -51,11 +50,11 @@ public class CommonFormatter implements Formatter {
     }
 
     @Override
-    public String decorateStringsSequence(String last_string, int last_string_counter) {
-        if (last_string_counter == 1) {
-            return decorateString(last_string);
+    public String decorateStringsSequence(String lastString, int lastStringCounter) {
+        if (lastStringCounter == 1) {
+            return decorateString(lastString);
         } else {
-            return String.format(stringSequenceTemplate, last_string, last_string_counter);
+            return String.format(stringSequenceTemplate, lastString, lastStringCounter);
         }
     }
 

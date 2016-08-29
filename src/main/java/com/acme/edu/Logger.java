@@ -48,7 +48,7 @@ public class Logger {
      */
     public void log(int number) {
         summatorForIntSequence += number;
-        int additionToOverflow = (int) (summatorForIntSequence /Integer.MAX_VALUE);
+        int additionToOverflow = (int) (summatorForIntSequence/Integer.MAX_VALUE);
         ammountOfMaxIntegerOverflow += additionToOverflow;
         summatorForIntSequence = summatorForIntSequence - (Integer.MAX_VALUE * additionToOverflow);
     }
