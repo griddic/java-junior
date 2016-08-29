@@ -15,7 +15,7 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <artifactId>team04</artifactId>
         <version>3.3</version>
         <configuration>
           <source>1.8</source>
