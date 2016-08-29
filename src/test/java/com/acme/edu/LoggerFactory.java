@@ -9,8 +9,8 @@ public class LoggerFactory {
                 new CommonFormatter("char: %s", "string: %s", "reference: %s",
                         "primitive: %s", "%s (x%d)", "primitives array: %s",
                         "primitives matrix: {" + System.lineSeparator() + "%s}"),
-                new ConsoleOutput(),
-                message -> System.out.println("Hello! " + message + " !!!!1!!"));
+                new ConsoleOutput());
+                //message -> System.out.println("Hello! " + message + " !!!!1!!"));
         return logger;
     }
 

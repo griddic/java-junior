@@ -1,9 +1,6 @@
 package com.acme.edu.UnitTests;
 
-import com.acme.edu.Formatter;
-import com.acme.edu.Logger;
-import com.acme.edu.LoggerFactory;
-import com.acme.edu.OutStream;
+import com.acme.edu.*;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +13,7 @@ import static org.mockito.Mockito.when;
  */
 public class LoggerTest {
     @Test
-    public void shouldAccumulateNumbersForIntSequences() {
+    public void shouldAccumulateNumbersForIntSequences() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -30,7 +27,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void shouldAccumulateNumbersForIntSequencesWithOwerflow() {
+    public void shouldAccumulateNumbersForIntSequencesWithOwerflow() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -46,7 +43,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void shouldAccumulateNumbersForByteSequences() {
+    public void shouldAccumulateNumbersForByteSequences() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -60,7 +57,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void shouldAccumulateNumbersForByteSequencesWithOwerflow() {
+    public void shouldAccumulateNumbersForByteSequencesWithOwerflow() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -76,7 +73,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void shouldAccumulateStringsForStringSequences() {
+    public void shouldAccumulateStringsForStringSequences() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -91,7 +88,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void shouldLogIntArrays () {
+    public void shouldLogIntArrays () throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -106,7 +103,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void shouldLogIntMatrix () {
+    public void shouldLogIntMatrix () throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -127,7 +124,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void logChar() {
+    public void logChar() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
@@ -140,7 +137,7 @@ public class LoggerTest {
     }
 
     @Test
-    public void logBoolean() {
+    public void logBoolean() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         //Given
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);

@@ -1,8 +1,6 @@
 package com.acme.edu.UnitTests;
 
-import com.acme.edu.ConsoleOutput;
-import com.acme.edu.OutStream;
-import com.acme.edu.SysoutCaptureAndAssertionAbility;
+import com.acme.edu.*;
 import org.junit.Test;
 
 /**
@@ -10,7 +8,7 @@ import org.junit.Test;
  */
 public class ConsoleOutputTest implements SysoutCaptureAndAssertionAbility {
     @Test
-    public void writenStringAppearsInConsole() {
+    public void writenStringAppearsInConsole() throws OutStreamUnableToWriteException, OutStreamUnableToOpenException {
         OutStream stdout = new ConsoleOutput();
 
         resetOut();
