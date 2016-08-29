@@ -18,8 +18,17 @@ public class Logger {
         this.formatter = formatter;
     }
 
-        private static void logRawString(String message) {
-        outStreams.write(message);
+
+    private static void logRawString(String message) {
+        try {
+            outStreams.write(message);
+        }
+        catch (OutStreamUnableToOpenException e) {
+            e.printStackTrace();
+        }
+        catch (OutStreamUnableToWriteException e) {
+            e.printStackTrace();
+        }
     }
 
 

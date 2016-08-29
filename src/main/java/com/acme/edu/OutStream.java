@@ -4,5 +4,6 @@ package com.acme.edu;
  */
 
 public interface OutStream {
-    public void write (String message);
+    public void write (String message)
+            throws OutStreamUnableToOpenException, OutStreamUnableToWriteException;
 }
