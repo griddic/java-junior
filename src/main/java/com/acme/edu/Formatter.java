@@ -12,7 +12,7 @@ public interface Formatter {
 
     public String decorateAnyPrimitiveType(Object obj);
 
-    public String decorateStringsSequence(String last_string, int last_string_counter) ;
+    public String decorateStringsSequence(String lastString, int lastStringCounter) ;
 
     public String arrayToString(int[] array) ;
 

@@ -78,7 +78,8 @@ public class CommonFormatter implements Formatter {
     public String decorMatrix(int[][] matrix) {
         StringBuilder array = new StringBuilder("");
         for (int i = 0; i <= (matrix.length - 1); i++) {
-            array.append(this.arrayToString(matrix[i]) + System.lineSeparator());
+            array.append(this.arrayToString(matrix[i]));
+            array.append(System.lineSeparator());
         }
         return String.format(primitivesMatrixTemplate, array);
     }
