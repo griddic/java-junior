@@ -3,7 +3,6 @@ import static org.fest.assertions.Assertions.assertThat; // main one
 
 import com.acme.edu.CommonFormatter;
 import com.acme.edu.Formatter;
-import com.sun.xml.internal.bind.v2.runtime.IllegalAnnotationException;
 import org.junit.Test;
 
 /**
