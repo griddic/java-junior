@@ -41,6 +41,7 @@ public class CommonFormatter implements Formatter {
 
     @Override
     public String decorateObject(Object obj) {
+        if (obj instanceof Long) throw new IllegalArgumentException("Logging long numbers not supported!");
         return String.format(obgectTemplate, obj);
     }
 
