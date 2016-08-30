@@ -9,12 +9,12 @@ public class LoggerFactory {
                 new CommonFormatter("char: %s", "string: %s", "reference: %s",
                         "primitive: %s", "%s (x%d)", "primitives array: %s",
                         "primitives matrix: {" + System.lineSeparator() + "%s}"),
-                new ConsoleOutput());
-                //message -> System.out.println("Hello! " + message + " !!!!1!!"));
+                new OutStreamToConsole(),
+                new OutStreamToFile("logger.log"));
         return logger;
     }
 
     public static Logger consoleOutOnlyLogger () {
-        return new Logger(new CommonFormatter(), new ConsoleOutput());
+        return new Logger(new CommonFormatter(), new OutStreamToConsole());
     }
 }
