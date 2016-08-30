@@ -25,9 +25,39 @@ public class OutStreamToFileTest {
 
     @Test
     public void shouldWriteCharToFile() throws IOException {
+        //region When
         logger.log('a');
         File file = new File(fileName);
         List lines = FileUtils.readLines(file, "UTF-8");
+        //endregion
+        //region Than
         assert (lines.get(lines.size()-1).toString().equals("char: a"));
+        //endregion
+    }
+
+    @Test
+    public void shouldWriteIntegerOverflowCorrectlyToFile() throws IOException {
+        //When
+        logger.log(10);
+        logger.log(Integer.MAX_VALUE);
+        logger.intSequenceEnd();
+        File file = new File(fileName);
+        List lines = FileUtils.readLines(file, "UTF-8");
+        //Than
+        assert (lines.get(lines.size()-2).toString().equals("primitive: 10"));
+        assert (lines.get(lines.size()-1).toString().equals("" + Integer.MAX_VALUE));
+    }
+
+    @Test
+    public void shouldWriteByteOverflowCorrectlyToFile() throws IOException {
+        //When
+        logger.log((byte)67);
+        logger.log(Byte.MAX_VALUE);
+        logger.byteSequenceEnd();
+        File file = new File(fileName);
+        List lines = FileUtils.readLines(file, "UTF-8");
+        //Than
+        assert (lines.get(lines.size()-2).toString().equals("primitive: 67"));
+        assert (lines.get(lines.size()-1).toString().equals("" + Byte.MAX_VALUE));
     }
 }
