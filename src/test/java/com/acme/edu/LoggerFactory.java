@@ -17,4 +17,8 @@ public class LoggerFactory {
     public static Logger consoleOutOnlyLogger () {
         return new Logger(new CommonFormatter(), new OutStreamToConsole());
     }
+
+    public static Logger fileOnlyLogger (String fileName) {
+        return new Logger (new CommonFormatter(), new OutStreamToFile(fileName));
+    }
 }
