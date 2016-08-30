@@ -61,7 +61,7 @@ public class Logger {
     public void log(byte number) {
         int additionToOverflow;
         summatorForByteSequence += number;
-        additionToOverflow = (int) (summatorForByteSequence /Byte.MAX_VALUE);
+        additionToOverflow = (summatorForByteSequence /Byte.MAX_VALUE);
         ammountOfMaxByteOverflow += additionToOverflow;
         summatorForByteSequence = summatorForByteSequence - (Byte.MAX_VALUE * additionToOverflow);
     }

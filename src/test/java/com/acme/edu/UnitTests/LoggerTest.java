@@ -48,7 +48,7 @@ public class LoggerTest {
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
         Logger logger = new Logger (formatter, outStream);
-        when(formatter.decorateAnyPrimitiveType((int) 5)).thenReturn("primitive: 5");
+        when(formatter.decorateAnyPrimitiveType(5)).thenReturn("primitive: 5");
         //When
         logger.log((byte)5);
         logger.byteSequenceEnd();
@@ -62,7 +62,7 @@ public class LoggerTest {
         Formatter formatter = mock(Formatter.class);
         OutStream outStream = mock(OutStream.class);
         Logger logger = new Logger (formatter, outStream);
-        when(formatter.decorateAnyPrimitiveType((int) 5)).thenReturn("primitive: 5");
+        when(formatter.decorateAnyPrimitiveType(5)).thenReturn("primitive: 5");
         //When
         logger.log((byte)5);
         logger.log(Byte.MAX_VALUE);

@@ -83,7 +83,7 @@ public class loggerTest implements SysoutCaptureAndAssertionAbility {
         logger.log("str 1");
         logger.strSequenceEnd();
         logger.log((byte)10);
-        logger.log((byte)Byte.MAX_VALUE);
+        logger.log(Byte.MAX_VALUE);
         logger.byteSequenceEnd();
         logger.log("str 2");
         logger.strSequenceEnd();
