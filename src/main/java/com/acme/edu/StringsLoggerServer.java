@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 /**
  * Created by Java_5 on 31.08.2016.
@@ -29,9 +30,15 @@ public class StringsLoggerServer {
                     }
                 }
 
-            } catch (IOException e) {
+            }
+            catch (SocketTimeoutException e) {
+                System.out.println("Server closed due to timeout.");
+                break;
+            }
+            catch (IOException e) {
                 e.printStackTrace();
             }
+
         }
     }
 
