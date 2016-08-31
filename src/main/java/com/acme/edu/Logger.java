@@ -156,3 +156,4 @@ public class Logger {
         logLnRawString(formatter.decorMatrix(matrix));
     }
 }
+

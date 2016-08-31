@@ -10,7 +10,8 @@ public class LoggerFactory {
                         "primitive: %s", "%s (x%d)", "primitives array: %s",
                         "primitives matrix: {" + System.lineSeparator() + "%s}"),
                 new OutStreamToConsole(),
-                new OutStreamToFile("logger.log"));
+                new OutStreamToFile("logger.log"),
+                new OutStreamToLoggingServer("localhost", 1111));
         return logger;
     }
 
